@@ -1,4 +1,17 @@
-"""PyCalc: Simple calculator built with Python and PyQt."""
+"""PyCalc: Simple calculator built with Python and PyQt.
+
+>>> evaluateExpression("3 + 5")
+'8'
+
+>>> evaluateExpression("10 / 2")
+'5.0'
+
+>>> evaluateExpression("2 * 3 + 4")
+'10'
+
+>>> evaluateExpression("5 / 0")
+'ERROR'
+"""
 
 import sys
 from functools import partial
@@ -12,6 +25,7 @@ from PyQt6.QtWidgets import (
     QPushButton,
     QWidget,
 )
+import doctest
 
 # Константи
 WINDOW_SIZE = 235
@@ -78,7 +92,21 @@ class PyCalcWindow(QMainWindow):
 
 
 def evaluateExpression(expression):
-    """Оцінити математичний вираз."""
+    """Оцінити математичний вираз.
+
+    Приклад:
+    >>> evaluateExpression("3 + 5")
+    '8'
+
+    >>> evaluateExpression("10 / 2")
+    '5.0'
+
+    >>> evaluateExpression("2 * 3 + 4")
+    '10'
+
+    >>> evaluateExpression("5 / 0")
+    'ERROR'
+    """
     try:
         result = str(eval(expression, {}, {}))
     except Exception:
@@ -125,4 +153,6 @@ def main():
 
 
 if __name__ == "__main__":
+    # Запуск тестів
+    doctest.testmod()
     main()
